@@ -1,0 +1,19 @@
+{
+    "name": "jorge/filetype",
+    "description": "PHP class that verifies the mime type of a file",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "jorge",
+            "email": "jorgelopezdev@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+    },
+    "autoload": {
+        "psr-4": {
+            "filetype\\" : "src/"
+        }
+    }
+}
