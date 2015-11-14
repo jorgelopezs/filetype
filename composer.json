@@ -9,6 +9,12 @@
         }
     ],
     "minimum-stability": "stable",
+    "repositories" : [
+        {
+            "type" : "vcs",
+            "url" : "git@github.com:jorgelopezs/filetype.git"
+        }
+    ],
     "require": {
         "wikimedia/aho-corasick" : "@dev"
     },
