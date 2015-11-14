@@ -10,7 +10,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "wikimedia/aho-corasick" : "@dev"
+        "wikimedia/aho-corasick" : "*"
     },
     "autoload": {
         "psr-4": {
