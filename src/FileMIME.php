@@ -2,7 +2,7 @@
 	namespace filetype;
 	use AhoCorasick\MultiStringMatcher;
 
-	class ImageMIME{
+	class FileMIME{
 		
 		//holds the magic numbers
     	protected static $magicNumbers = array(

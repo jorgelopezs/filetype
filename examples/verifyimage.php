@@ -3,11 +3,11 @@
 	require_once(__DIR__ . "/../vendor/autoload.php");
 
 
-	use filetype\ImageMIME;
+	use filetype\FileMIME;
   	
 
 
-	ImageMIME::testImage(__DIR__ . '/test.jpg');
+	FileMIME::getMIMEType(__DIR__ . '/test.jpg');
 
 //echo MIME_Type::autoDetect();
 
