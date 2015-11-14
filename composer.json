@@ -8,7 +8,7 @@
             "email": "jorgelopezdev@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
         "wikimedia/aho-corasick" : "@dev"
     },
