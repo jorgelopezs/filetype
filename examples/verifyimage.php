@@ -7,7 +7,7 @@
   	
 
 
-	FileMIME::getMIMEType(__DIR__ . '/test.jpg');
+	echo FileMIME::getMIMEType(__DIR__ . '/test.jpg');
 
 //echo MIME_Type::autoDetect();
 
