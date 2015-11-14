@@ -1,110 +1,29 @@
 <?php
 	namespace filetype;
-	use AhoCorasick\MultiStringMatcher;
 
-	class ImageMIME{
+	class Parser{
 		protected static $imgSize = 0;
-		// protected static $magicNumbers = array();
-    	protected static $magicNumbers = array(
-			'image/jpeg' => "\xff\xd8",
-			'image/png'  => "\x89\x50\x4E\x47\x0D\x0A\x1A\x0A",
-			'image/gif' => "\x47\x49\x46\x38\x39\x61"
-    		);
+		protected static $magicNumbers = array();
 
 		public static function testImage($filePath){
-			
-			$st = microtime(true);
-			if(self::getMIMEType('test.gif')){
-				echo "got mime"; 
-			}else{
-				echo "could't determine mime type";
-			}
-			// echo "</br>TIME --- " . (microtime(true) - $st);
+			// self::$imgSize = filesize('test.jpg');
+			//echo self::$imgSize;
 
-	
-
-		}
-
-		public static function getMIMEType($fileHandle){// parameter can be a resource or path
-
-			
-			//check if a file resource or path was passed
-			if(!is_string($fileHandle) && !is_resource($fileHandle))return false;
-			else if(is_string($fileHandle)){
-
-				$inFileHandle = fopen($fileHandle, "rb");
-			}
-
-			//resource type is not stream
-			if(is_resource($fileHandle) && get_resource_type($fileHandle) != "stream")return false;
-			
-			//determine the largest header in bytes
-			//get the length of each value in $magicNumbers
-			$magicNumbersLengths = array_map("strlen", self::$magicNumbers);
-			//get the longest magic number
-			$longestMagicNumber = max($magicNumbersLengths);
-
-			//select which handle to read from
-			//either the passed $fileHandle or the newly created $inFileHandle
-			$handleToUse = (is_resource($fileHandle)) ? $fileHandle : $inFileHandle; 
-
-			//read the largest amount of bytes from magic numbers
-			$head = fread($handleToUse, $longestMagicNumber);
-			
-
-			//$st = microtime(true);
-			// retrive only the values in magicNumbers array
-    		$needles = array_values(self::$magicNumbers);
-
-    		//add the needles to MultiStringMatcher
-			$keywords = new MultiStringMatcher($needles);
-
-			//perform the byte search
-			$res = $keywords->searchIn( $head);
-
-			//close the resource if it was opened locally
-			if(is_resource($inFileHandle)){
-
-				//close the resource
-				fclose($inFileHandle);
-	
-			}
-			
-			//check if the result is empty - if so return
-			if(empty($res))return false;
-			
-			//check the 1st value in the result array 
-			//0 index has the position that the needle was found - in our case it has to be 0 - the beginning
-			//1 index contains the needle that was matched
-			if($res[0][0] == 0){
-				//search the found needle in $magicNumbers array to retrieve the MIME type
-				$foundNeedle = $res[0][1];
-
-				//return the mime type
-				return  (string) array_search($foundNeedle, self::$magicNumbers);
-			}else return false;
-			
-		}
-	    public static function isImage($imgPath){
-	        if(!$imgPath || empty($imgPath))return false;
-
-	        // open the file in reading and byte mode 'rb'
-			$fileHandle = fopen($imgPath, 'rb');
-			if($fileHandle == FALSE){
+			// open the file in reading and byte mode 'rb'
+			$imgHandle = fopen('test.jpg', 'rb');
+			if($imgHandle == FALSE){
 				//TODO: throw an exception
 				return false;
 			}
-			
-			//get the mime type of the file
-			$mimeType = self::getMIMEType($fileHandle);
 
+		  	//detect the file mime type
+			//echo self::verifyJPEG($imgHandle);
+
+			//echo self::verifyJPEG($imgHandle)? "true":"false";
+			self::verifyPNG($imgHandle);
 			//close the open image file
-			fclose($fileHandle);
+			fclose($imgHandle);
 
-			//check if the received mimetype exists in our images $magicNumbers
-			if(array_key_exists($mimeType, self::$magicNumbers))return true;
-			else return false;
-			
 		}
 		public function verifyJPEG($imgHandle){
 			if(ftell($imgHandle) != 0){
