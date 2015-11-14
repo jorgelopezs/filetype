@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d227754bd246dc7e20c2a6dcdd43e85a",
-    "content-hash": "c263e95dd271c8800f0b31fac644d32a",
+    "hash": "9651ab9f4ddf9ddda8b92c2b4ce7efe6",
+    "content-hash": "03e1224eab6f58994e01c8f4dc61d285",
     "packages": [
         {
             "name": "wikimedia/aho-corasick",
