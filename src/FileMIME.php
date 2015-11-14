@@ -3,27 +3,20 @@
 	use AhoCorasick\MultiStringMatcher;
 
 	class ImageMIME{
-		protected static $imgSize = 0;
-		// protected static $magicNumbers = array();
+		
+		//holds the magic numbers
     	protected static $magicNumbers = array(
-			'image/jpeg' => "\xff\xd8",
+			'image/jpeg' => "\xFF\xD8",
 			'image/png'  => "\x89\x50\x4E\x47\x0D\x0A\x1A\x0A",
-			'image/gif' => "\x47\x49\x46\x38\x39\x61"
+			'image/gif' => "\x47\x49\x46\x38\x39\x61",
+			'image/bmp' => "\x42\x4D"
     		);
 
-		public static function testImage($filePath){
-			echo "hello world";
-			$st = microtime(true);
-			if(self::getMIMEType('test.gif')){
-				echo "got mime"; 
-			}else{
-				echo "could't determine mime type";
-			}
-			// echo "</br>TIME --- " . (microtime(true) - $st);
+		// public static function testImage($filePath){
+			
+		// 	echo self::getMIMEType("test.jpg");
 
-	
-
-		}
+		// }
 
 		public static function getMIMEType($fileHandle){// parameter can be a resource or path
 
