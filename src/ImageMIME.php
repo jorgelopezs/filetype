@@ -12,7 +12,7 @@
     		);
 
 		public static function testImage($filePath){
-			
+			echo "hello world";
 			$st = microtime(true);
 			if(self::getMIMEType('test.gif')){
 				echo "got mime"; 
