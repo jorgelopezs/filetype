@@ -20,13 +20,13 @@
 
 		public static function getMIMEType($fileHandle){// parameter can be a resource or path
 
-			d($fileHandle);
+			
 			//check if a file resource or path was passed
 			if(!is_string($fileHandle) && !is_resource($fileHandle))return false;
 			else if(is_string($fileHandle)){
 
 				$inFileHandle = fopen($fileHandle, "rb");
-				d("creating inFileHandle");
+				
 			}
 
 			//resource type is not stream
@@ -57,10 +57,11 @@
 			$res = $keywords->searchIn( $head);
 
 			//close the resource if it was opened locally
-			if(is_resource($inFileHandle)){
-
-				//close the resource
-				fclose($inFileHandle);
+			if(isset($inFileHandle)){
+				if(is_resource($inFileHandle)){
+					//close the resource
+					fclose($inFileHandle);
+				}
 	
 			}
 			
